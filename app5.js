@@ -29,8 +29,8 @@ app.get("/luck", (req, res) => {
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
-  let win = Number( req.query.win );
-  let total = Number( req.query.total );
+  let win = Number( req.query.win ||0);
+  let total = Number( req.query.total ||0);
   console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
@@ -39,9 +39,22 @@ app.get("/janken", (req, res) => {
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
   // 今はダミーで人間の勝ちにしておく
-  let judgement = '勝ち';
-  win += 1;
-  total += 1;
+  let judgement = '';
+  //グーの勝敗
+  if (cpu == 'グー' && hand == 'パー') judgement = '勝ち' ,win++
+  else if (cpu == 'グー' && hand == 'チョキ') judgement = '負け'
+  else if (cpu == 'グー' && hand == 'グー') judgement = '引き分け'
+  //チョキの勝敗
+  if (cpu == 'チョキ' && hand == 'パー') judgement = '負け' 
+  else if (cpu == 'チョキ' && hand == 'チョキ') judgement = '引き分け'
+  else if (cpu == 'チョキ' && hand == 'グー') judgement = '勝ち' ,win++
+  //パーの勝敗
+  if (cpu == 'パー' && hand == 'パー') judgement = '引き分け' 
+  else if (cpu == 'パー' && hand == 'チョキ') judgement = '勝ち' ,win++
+  else if (cpu == 'パー' && hand == 'グー') judgement = '負け'
+
+  total = total+1;
+  
   const display = {
     your: hand,
     cpu: cpu,
@@ -53,3 +66,4 @@ app.get("/janken", (req, res) => {
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
+//http://localhost:8080/janken
