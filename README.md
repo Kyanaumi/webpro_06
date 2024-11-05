@@ -27,7 +27,7 @@ start["開始"];
 end1["終了"]
 if{"条件に合うか"}
 win["勝ち"]
-loode["負け"]
+loose["負け"]
 
 start --> if
 if -->|yes| win
