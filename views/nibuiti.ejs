@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>1/2を当てるゲーム</title>
+</head>
+<body>
+    <p>あなたのは<%= your %>を選んだ．</p>
+    <p>コンピュータは<%= cpu %>を選んだ．</p>
+    <p>判定：<%= judgement %></p>
+    <p>現在<%= total %>試合中<%= win %>勝しています．</p>
+    <hr>
+    <form action="/nibuiti">
+        <input type="text" name="hand" required>
+        <label for="hand">右と左どっちが当たり？</label>
+        <input type="hidden" name="win" value="<%= win %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="submit" values="じゃんけん　ポン">
+    </form>   
+</body>
+</html>
