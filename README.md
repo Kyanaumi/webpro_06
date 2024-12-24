@@ -25,6 +25,7 @@ console.log("Hello");
 1. webブラウザ内で http://localhost:8080/hello1 または，http://localhost:8080/hello2 にアクセスする．
 1. Hello WorldとBon jourが表示される．
 
+show.ejsは上記のコマンドを実行することで，ブラウザ上にHello WorldとBon jourを表示する機能がある．
 
 ```mermaid
 flowchart TD;
@@ -42,6 +43,8 @@ flowchart TD;
 flowchart TD;
 開始 --> node1[アイコンの表示] -->終了;
 ```
+
+icon.ejsは上記のコマンドを実行することで，ブラウザ上にAppleのロゴをを表示する機能がある．
 
 ### luck.ejs
 1. ターミナルを開き```cd Desktop```，```cd webpuro```，```cd webpro_06```の順に実行する．
@@ -67,6 +70,8 @@ dai --> end1
 tyuu --> end1
 syou --> end1
 ```
+
+luck.ejsは上記のコマンドを実行することで，ブラウザ上でおみくじの結果を表示する機能がある．
 
 ### janken.ejs
 1.  ターミナルを開き```cd Desktop```，```cd webpuro```，```cd webpro_06```の順に実行する．
@@ -99,6 +104,8 @@ if --> |パー| aiko
 aiko --> end1
 ```
 
+janken.ejsは上記のコマンドを実行することで，ブラウザ上でコンピュータとじゃんけんをすることができる機能がある．
+
 ### nibuiti.ejs
 1. ターミナルを開き```cd Desktop```，```cd webpuro```，```cd webpro_06```の順に実行する．
 1. ターミナル内で```node app5.js```を実行する．
@@ -123,11 +130,16 @@ if -->|左| loose
 loose--> end1
 ```
 
-### atiimuite.ejs
+nibuiti.ejsは上記のコマンドを実行することで，ブラウザ上でコンピュータと右と左のどちらが当たりかを勝負する機能がある．
+
+### attimuite.ejs
 1. ターミナルを開き```cd Desktop```，```cd webpuro```，```cd webpro_06```の順に実行する．
 1. ターミナル内で```node app5.js```を実行する．
 1. webブラウザ内で http://localhost:8080/attimuite にアクセスする．
 1. コンピュータが上，右，左，下のどちらの方向に向くのかを予想し上，右，左，下のどれかを入力し送信する．
+
+attimuite.ejsは上記のコマンドを実行することで，ブラウザ上でコンピュータとあっちむいてホイをすることができる機能がある．
+
 
 ```mermaid
 flowchart TD;
