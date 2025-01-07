@@ -8,8 +8,13 @@
     <link rel="stylesheet" href="./bbs.css">
 </head>
 <body>
+    <h1>掲示板</h1>
     <div id="bbs"></div>
     <div>
+        <form action="/test" method="post">
+            <label for="date">投稿日</label>
+            <input type="date" name="date" id="date">
+        </form>
         <label for="name">名前：</label>
         <input type="text" id="name">
         <label for="name">メッセージ：</label>

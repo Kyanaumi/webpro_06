@@ -51,7 +51,7 @@ icon.ejsは上記のコマンドを実行することで，ブラウザ上にApp
 1. ターミナル内で```node app5.js```を実行する．
 1. webブラウザ内で http://localhost:8080/luck にアクセスする．
 1. 運勢が大吉，中吉，小吉の中から選ばれる．
-
+luck.ejsは上記のコマンドを実行することで，ブラウザ上でおみくじの結果を表示する機能がある．
 ```mermaid
 flowchart TD;
 
@@ -71,7 +71,6 @@ tyuu --> end1
 syou --> end1
 ```
 
-luck.ejsは上記のコマンドを実行することで，ブラウザ上でおみくじの結果を表示する機能がある．
 
 ### janken.ejs
 1.  ターミナルを開き```cd Desktop```，```cd webpuro```，```cd webpro_06```の順に実行する．

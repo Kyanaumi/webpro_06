@@ -2,7 +2,8 @@
 const express = require("express");
 const app = express();
 
-let bbs = [];  // 本来はDBMSを使用するが，今回はこの変数にデータを蓄える
+//let bbs = [];  // 本来はDBMSを使用するが，今回はこの変数にデータを蓄える
+//let nextid = 1;
 
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
@@ -82,6 +83,8 @@ app.post("/add", (req, res) => {
   res.json( {answer: num1+num2} );
 });
 
+
+let bbs = [];  // 本来はDBMSを使用するが，今回はこの変数にデータを蓄える
 // これより下はBBS関係
 app.post("/check", (req, res) => {
   // 本来はここでDBMSに問い合わせる
@@ -89,45 +92,74 @@ app.post("/check", (req, res) => {
 });
 
 app.post("/read", (req, res) => {
-  // 本来はここでDBMSに問い合わせる
   const start = Number( req.body.start );
   console.log( "read -> " + start );
   if( start==0 ) res.json( {messages: bbs });
   else res.json( {messages: bbs.slice( start )});
 });
 
+let nextid = 1;
 app.post("/post", (req, res) => {
+  const date = req.body.date;
   const name = req.body.name;
   const message = req.body.message;
-  console.log( [name, message] );
+  const id = nextid++;
+  console.log( [id,date,name, message] );
   // 本来はここでDBMSに保存する
-  bbs.push( { name: name, message: message } );
-  res.json( {number: bbs.length } );
+  bbs.push( {id:id ,date:date ,name: name, message: message } );
+  res.json( {number: bbs.length,id } );
 });
 
-app.get("/bbs", (req,res) => {
-    console.log("GET /BBS");
-    res.json( {test: "GET /BBS" });
+//app.get("/bbs", (req,res) => {
+//  console.log("GET /BBS");
+//  res.json( {test: "GET /BBS" });
+//});
+
+//app.post("/bbs", (req,res) => {//投稿する部分
+//  console.log("POST /BBS");
+//  res.json( {test: "POST /BBS"});
+//})
+
+app.post("/bbs/:id", (req,res) => {
+  const id = req.params.id;
+  const date = req.body.date;
+  const name = req.body.name;
+  const message = req.body.message;
+  const index = bbs.findIndex(post => post.id == Number(id));
+  bbs[index] = { id: Number(id), date, name, message };
+  res.json({ message: "Post updated", post: bbs[index] });
 });
 
-app.post("/bbs", (req,res) => {//投稿する部分
-    console.log("POST /BBS");
-    res.json( {test: "POST /BBS"});
-})
+//app.get("/bbs/:id", (req,res) => {
+//    console.log( "GET /BBS/" + req.params.id );
+//    res.json( {test: "GET /BBS/" + req.params.id });
+//});
 
-app.get("/bbs/:id", (req,res) => {
-    console.log( "GET /BBS/" + req.params.id );
-    res.json( {test: "GET /BBS/" + req.params.id });
+//app.put("/bbs/:id", (req,res) => {//更新する部分，putメッソドを使うと反応する
+//  console.log( "PUT /BBS/" + req.params.id );
+//  res.json( {test: "PUT /BBS/" + req.params.id });
+//});
+
+app.put("/bbs/:id", (req, res) => {//更新する部分，putメッソドを使うと反応する
+    const id = Number(req.params.id);
+    const name = req.body.name; 
+    const message = req.body.message
+    const index = bbs.findIndex(post => post.id == id);
+    bbs[index].name = name;
+    bbs[index].message = message;
+    res.json({ message: "Post updated", post: bbs[index] });
 });
 
-app.put("/bbs/:id", (req,res) => {//更新する部分，putメッソドを使うと反応する
-    console.log( "PUT /BBS/" + req.params.id );
-    res.json( {test: "PUT /BBS/" + req.params.id });
-});
+//app.delete("/bbs/:id", (req,res) => {
+//  console.log( "DELETE /BBS/" + req.params.id );
+//  res.json( {test: "DELETE /BBS/" + req.params.id });
+//});
 
 app.delete("/bbs/:id", (req,res) => {
-    console.log( "DELETE /BBS/" + req.params.id );
-    res.json( {test: "DELETE /BBS/" + req.params.id });
+  const id = req.params.id;
+  const index = bbs.findIndex(post => post.id == Number(id));
+  bbs.splice(index, 1); // 削除
+  res.json({ message: "Post deleted" });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

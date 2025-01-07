@@ -9,6 +9,10 @@ sequenceDiagram
   BBSサーバ ->> BBSクライアント:全書き込み数
   BBSクライアント ->> BBSサーバ:Read(読み込み)
   BBSサーバ ->> BBSクライアント:掲示データ
+  BBSクライアント ->> BBSサーバ:Put(置き換え) 
+  BBSサーバ ->> BBSクライアント:投稿の置き換え
+  BBSクライアント ->> BBSサーバ:Delete(削除)
+  BBSサーバ ->> BBSクライアント:投稿の削除
   BBSクライアント ->> BBSサーバ:Check(新規チェック)
   BBSサーバ ->> BBSクライアント:全書き込み数
 ```
