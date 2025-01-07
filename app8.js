@@ -161,5 +161,5 @@ app.delete("/bbs/:id", (req,res) => {
   bbs.splice(index, 1); // 削除
   res.json({ message: "Post deleted" });
 });
-
+////////
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
